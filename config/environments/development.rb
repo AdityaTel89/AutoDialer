@@ -44,5 +44,5 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # Use Sidekiq for background jobs (IMPORTANT FOR BULK)
-  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
 end
