@@ -22,13 +22,14 @@ class BatchDialerService
         pn.uploaded_at = Time.current
       end
       
-      # Queue the call with 2-second delay between calls to avoid rate limits
-      MakeCallJob.set(wait: index * 2.seconds).perform_later(
-        phone_record.id,
-        @ai_prompt
-      )
+      # Remove .set(wait: ...) and just call perform_later
+      MakeCallJob.perform_later(phone_record.id, @ai_prompt)
       
       results[:queued] += 1
+      
+      # Optional: Add small delay between calls to avoid rate limits
+      sleep 2 if index < @phone_numbers.count - 1
+      
     rescue StandardError => e
       results[:failed] += 1
       results[:errors] << { number: number, error: e.message }

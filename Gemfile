@@ -26,8 +26,7 @@ gem 'ruby-openai'
 # Twilio
 gem "twilio-ruby", "~> 6.8"
 
-# Background Jobs
-gem "sidekiq", "~> 7.2"
+
 
 # File Upload
 gem "roo", "~> 2.10"

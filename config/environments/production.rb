@@ -26,7 +26,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Use Sidekiq for background jobs (CRUCIAL FOR BULK DIALING)
-  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
 
   config.action_mailer.perform_caching = false
   # ... other production mailer settings ...

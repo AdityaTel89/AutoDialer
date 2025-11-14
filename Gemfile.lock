@@ -244,12 +244,6 @@ GEM
       faraday-multipart (>= 1)
     rubyzip (2.4.1)
     securerandom (0.4.1)
-    sidekiq (7.3.9)
-      base64
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -313,7 +307,6 @@ DEPENDENCIES
   redis (~> 5.0)
   roo (~> 2.10)
   ruby-openai
-  sidekiq (~> 7.2)
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
