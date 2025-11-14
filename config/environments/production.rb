@@ -6,11 +6,12 @@ Rails.application.configure do
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
-  # Allow ngrok or custom hosts if needed, or use your production domain(s)
-  # config.hosts << "your-production-domain.com"
-  # config.hosts << /[a-z0-9-]+\.ngrok-free\.dev/  # Only needed if you use ngrok in production
+  # Allow Render host for webhooks and production access
+  config.hosts << "autodialer-nwzg.onrender.com"
+  # Or allow all Render subdomains:
+  # config.hosts << /.*\.onrender\.com/
 
-  # Disable serving static files from the Rails app
+  # Disable serving static files from the Rails app (let nginx/CDN handle it)
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.active_storage.service = :local
@@ -25,14 +26,11 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
   config.active_record.dump_schema_after_migration = false
 
-  # Use Sidekiq for background jobs (CRUCIAL FOR BULK DIALING)
+  # Use inline for background jobs (no separate worker needed)
   config.active_job.queue_adapter = :inline
 
   config.action_mailer.perform_caching = false
-  # ... other production mailer settings ...
 
-  # Enable DNS rebinding protection etc. as needed.
-  # config.hosts = [...] # Set to your production domains
-
-  # config.active_job.queue_name_prefix = "autodialer_production" # Optionally namespace jobs
+  # Optional: Namespace jobs per environment
+  # config.active_job.queue_name_prefix = "autodialer_production"
 end
